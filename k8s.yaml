@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: s3-connect
+  labels:
+    app: s3-connect
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: s3-connect
+  template:
+    metadata:
+      labels:
+        app: s3-connect
+    spec:
+      containers:
+      - name: s3-connect
+        image: quay.io/shovanmaity/s3-connect:latest
+        command:
+        - run.sh
+        args:
+        - -i minioadmin
+        - -s minioadmin
+        - -u http://192.168.0.190:9000
+        - -r us-east-1
+        - -b b-001
+        - -k /
+        - -d tmp
