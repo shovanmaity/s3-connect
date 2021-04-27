@@ -1,11 +1,11 @@
-# S3-Connect
-Using s3-connect we can download a full single bucket or a part of a bucket in our local volume.
+# S3-sync
+Using S3-sync we can download a full single bucket or a part of a bucket in our local volume.
 
 Run MinIO docker image in local.
 ```bash
 docker run -p 9000:9000 \
-  -e "MINIO_ROOT_USER=minio" \
-  -e "MINIO_ROOT_PASSWORD=minio123" \
+  -e "MINIO_ROOT_USER=minioadmin" \
+  -e "MINIO_ROOT_PASSWORD=minioadmin" \
   minio/minio server /data
 ```
 
@@ -13,7 +13,7 @@ Create a bucket caller _b-001_ and inside this bucket create a sub dir _s-001_ a
 
 Download full _b-001_ bucket using
 ```bash
-docker run -ti --rm quay.io/shovanmaity/s3-connect:latest \
+docker run -ti --rm quay.io/shovanmaity/s3-sync:latest \
   '-u http://192.168.0.190:9000' \
   '-i minioadmin' '-s minioadmin' \
   '-r us-east-1' \
@@ -24,7 +24,7 @@ docker run -ti --rm quay.io/shovanmaity/s3-connect:latest \
 
 Download _s-01_ dir in _b-001_ bucket using
 ```bash
-docker run -ti --rm quay.io/shovanmaity/s3-connect:latest \
+docker run -ti --rm quay.io/shovanmaity/s3-sync:latest \
   '-u http://192.168.0.190:9000' \
   '-i minioadmin' '-s minioadmin' \
   '-r us-east-1' \

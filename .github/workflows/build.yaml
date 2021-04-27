@@ -25,6 +25,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: quay.io/shovanmaity/s3-connect:latest
+          tags: quay.io/shovanmaity/s3-sync:latest
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
